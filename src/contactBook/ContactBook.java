@@ -93,4 +93,27 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
+    public boolean hasPhone(int phone) {
+        return searchPhone(phone) >= 0;
+    }
+
+    //Pre: hasPhone(phone)
+    public String getContact (int phone) {
+        return contacts[searchPhone(phone)].getName();
+    }
+
+    //Search the number in the array that have this phone number. If the phone doesnt exist returns -1.
+    private int searchPhone (int phone) {
+        int i = 0;
+        int result = -1;
+        boolean found = false;
+        while (i<counter && !found)
+            if (contacts[i].getPhone() == phone)
+                found = true;
+            else
+                i++;
+        if (found) result = i;
+        return result;
+    }
+
 }
